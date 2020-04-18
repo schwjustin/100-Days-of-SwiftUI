@@ -1,88 +1,97 @@
 import UIKit
 
-let count = 1...10
-
-for number in count {
-    print("Number is \(number)")
+let driving = {
+    print("I'm driving in my car")
 }
 
-let albums = ["Red", "1989", "Reputation"]
+driving()
 
-for album in albums {
-    print("\(album) is on Apple Music")
+let drivingWithParameter = { (place: String) in
+    print("I'm going to \(place) in my car")
 }
 
-print("Players gonna ")
+drivingWithParameter("London")
 
-for _ in 1...5 {
-    print("play")
+let drivingWithReturn = { (place: String) -> String in
+    return "I'm going to \(place) in my car"
 }
 
-var number = 1
+let message = drivingWithReturn("London")
+print(message)
 
-while number <= 20 {
-    print(number)
-    number += 1
-}
-print("Ready or not, here I come!")
-
-var newNumber = 1
-
-repeat {
-    print(number)
-    number += 1
-} while number <= 20
-
-print("Ready or not, here I come!")
-
-while false {
-    print("This is false") //will never be executed
+func travel(action: () -> Void) {
+    print("I'm getting ready to go.")
+    action()
+    print("I arrived!")
 }
 
-repeat {
-    print("This is false")
-} while false
+travel(action: driving)
 
-var countDown = 10
-
-while countDown >= 0 {
-    print(countDown)
-    
-    if countDown == 4 {
-        print("I'm bored. Let's go now!")
-        break //exits loop
-    }
-    
-    countDown -= 1
+travel() {
+    print("I'm driving in my car")
 }
 
-outerLoop: for i in 1...10 {
-    for j in 1...10 {
-        let product = i * j
-        print("\(i) * \(j) is \(product)")
-        
-        if product == 50 {
-            print("It's a bullseye!")
-            break outerLoop
-        }
-    }
+travel { //trailing closure syntax
+    print("I'm driving in my car")
 }
 
-for i in 1...10 {
-    if i % 2 == 1 {
-        continue
-    }
-    
-    print(i)
+func travelithParameter(action: (String) -> Void) {
+    print("I'm getting ready to go.")
+    action("London")
+    print("I arrived!")
 }
 
-var counter = 0
+travelithParameter { (place: String) in
+    print("I'm going to \(place) in my car")
+}
 
-while true {
-    print(" ")
-    counter += 1
+func travel(action: (String) -> String) {
+    print("I'm getting ready to go.")
+    let description = action("London")
+    print(description)
+    print("I arrived!")
+}
 
-    if counter == 273 {
-        break
+travel { (place: String) -> String in
+    return "I'm going to \(place) in my car"
+}
+
+travel { //shorthand
+    "I'm going to \($0) in my car"
+}
+
+func newTravel(action: (String, Int) -> String) {
+    print("I'm getting ready to go.")
+    let description = action("London", 60)
+    print(description)
+    print("I arrived!")
+}
+
+newTravel {
+    "I'm going to \($0) at \($1) miles per hour."
+}
+
+func travelAgain() -> (String) -> Void {
+    return {
+        print("I'm going to \($0)")
     }
 }
+
+let result = travelAgain()
+result("London")
+
+let result2 = travelAgain()("London") //possible, but not recommended
+
+
+func travelAgainAgain() -> (String) -> Void {
+    var counter = 1
+    return {
+        print("\(counter). I'm going to \($0)")
+        counter += 1
+    }
+}
+let result3 = travelAgainAgain()
+result("London")
+result("London")
+result("London")
+result("London")
