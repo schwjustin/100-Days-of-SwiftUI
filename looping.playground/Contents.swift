@@ -1,81 +1,88 @@
 import UIKit
 
-let john = "john lennon"
-let paul = "paul mccartney"
-let george = "george harrison"
-let ringo = "ringo starr"
+let count = 1...10
 
-let beatles = [john, paul, george, ringo] //array
-beatles[1] //paul
-
-let colors = Set(["red", "green", "blue"]) //set - random order
-let colors2 = Set(["red", "green", "blue", "red"]) //duplicates are ignored
-
-var name = (first: "taylor", last: "swift") //tuple: 1. can't add or remove 2. can't change type 3. can access using numerical positions or names
-name.0
-name.first
-
-let address = (house: 555, street: "taylor swift avenue", city: "nashville") //tuple
-let set = Set(["aardvark", "astronaut", "azalea"]) //set
-let pythons = ["eric", "graham", "john", "terry", "terry"] //array
-
-let heights = [ //dictionary *similar to map class in c++
-    "taylor swift": 1.78, //key: value
-    "ed sheeran": 1.73,
-]
-heights["taylor swift"]
-
-let favIceCream = [
-    "paul": "chocolate",
-    "sophie": "vanilla"
-]
-favIceCream["paul"]
-favIceCream["charlotte", default: "unknown"] //if the key "charlotte" doesn't exist, returns the default value "unknown"
-
-//arrays, sets, and dictionaries are collections
-var teams = [String: String]() //empty array of Strings
-teams["paul"] = "red"
-
-var results = [Int]() //empty array of Ints
-
-var words = Set<String>() //empty set of Strings
-var numbers = Set<Int>() //empty set of Ints
-
-var scores = Dictionary<String, Int>() //empty dictionary
-
-let result = "failure"
-let result2 = "failed"
-let result3 = "fail"
-
-enum Result { //enums
-    case success
-    case failure
+for number in count {
+    print("Number is \(number)")
 }
 
-let result4 = Result.failure
+let albums = ["Red", "1989", "Reputation"]
 
-enum Activity {
-    case bored
-    case running(destination: String) //enum associaited values
-    case talking(topic: String)
+for album in albums {
+    print("\(album) is on Apple Music")
 }
 
-let talking = Activity.talking(topic: "football") //football is the associated value
+print("Players gonna ")
 
-enum Planet: Int {
-    case mercury //0
-    case venus //1
-    case earth //2
-    case mars //3
+for _ in 1...5 {
+    print("play")
 }
 
-let earth = Planet(rawValue: 2)
+var number = 1
 
-enum naturalPlanet: Int {
-    case mercury = 1
-    case venus //2
-    case earth //3
-    case mars //4
+while number <= 20 {
+    print(number)
+    number += 1
+}
+print("Ready or not, here I come!")
+
+var newNumber = 1
+
+repeat {
+    print(number)
+    number += 1
+} while number <= 20
+
+print("Ready or not, here I come!")
+
+while false {
+    print("This is false") //will never be executed
 }
 
-let naturalEarth = naturalPlanet(rawValue: 3)
+repeat {
+    print("This is false")
+} while false
+
+var countDown = 10
+
+while countDown >= 0 {
+    print(countDown)
+    
+    if countDown == 4 {
+        print("I'm bored. Let's go now!")
+        break //exits loop
+    }
+    
+    countDown -= 1
+}
+
+outerLoop: for i in 1...10 {
+    for j in 1...10 {
+        let product = i * j
+        print("\(i) * \(j) is \(product)")
+        
+        if product == 50 {
+            print("It's a bullseye!")
+            break outerLoop
+        }
+    }
+}
+
+for i in 1...10 {
+    if i % 2 == 1 {
+        continue
+    }
+    
+    print(i)
+}
+
+var counter = 0
+
+while true {
+    print(" ")
+    counter += 1
+
+    if counter == 273 {
+        break
+    }
+}
