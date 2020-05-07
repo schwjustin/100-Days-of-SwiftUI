@@ -8,6 +8,20 @@
 
 import SwiftUI
 
+struct Flag: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .shadow(color: .init(hue: 0, saturation: 0, brightness: 0, opacity: 0.15), radius: 20, y: 10)
+    }
+}
+
+extension View {
+    func FlagImage() -> some View {
+        self.modifier(Flag())
+    }
+}
+
 struct ContentView: View {
     @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
     @State private var correctAnswer = Int.random(in: 0...2)
@@ -41,10 +55,10 @@ struct ContentView: View {
                     }) {
                         Image(self.countries[number])
                             .renderingMode(.original)
-                            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                            .shadow(color: .init(hue: 0, saturation: 0, brightness: 0, opacity: 0.15), radius: 20, y: 10)
+                            .FlagImage()
                     }
                 }
+                
                 Text("\(score)")
                     .font(.title)
                     .fontWeight(.semibold)
