@@ -16,6 +16,8 @@ struct ContentView: View {
     @State private var errorTitle = ""
     @State private var errorMessage = ""
     @State private var showingError = false
+    
+    @State private var score = 0
 
     var body: some View {
         NavigationView {
@@ -29,8 +31,15 @@ struct ContentView: View {
                     Image(systemName: "\($0.count).circle.fill")
                     Text($0)
                 }
+                
+                Text("\(score)")
             }
             .navigationBarTitle(rootWord)
+            .navigationBarItems(leading:
+                Button("Restart") {
+                    self.startGame()
+                }
+            )
             .onAppear(perform: startGame)
             .alert(isPresented: $showingError) {
                 Alert(title: Text(errorTitle), message: Text(errorMessage), dismissButton: .default(Text("OK")))
@@ -59,7 +68,7 @@ struct ContentView: View {
             wordError(title: "Word not possible", message: "That isn't a real word.")
             return
         }
-        
+        score += answer.count * 10
         usedWords.insert(answer, at: 0)
         newWord = ""
     }
@@ -95,10 +104,12 @@ struct ContentView: View {
     }
     
     func isReal(word: String) -> Bool {
+        if word.count <= 3 || word == rootWord { return false }
+        
         let checker = UITextChecker()
         let range = NSRange(location: 0, length: word.utf16.count)
         let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
-
+        
         return misspelledRange.location == NSNotFound
     }
     
