@@ -22,15 +22,33 @@ extension View {
     }
 }
 
+struct Shake: GeometryEffect {
+    var amount: CGFloat = 10
+    var shakesPerUnit = 3
+    var animatableData: CGFloat
+
+    func effectValue(size: CGSize) -> ProjectionTransform {
+        ProjectionTransform(CGAffineTransform(translationX:
+            amount * sin(animatableData * .pi * CGFloat(shakesPerUnit)),
+            y: 0))
+    }
+}
+
 struct ContentView: View {
-    @State private var countries = ["Brazil", "Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
+    @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
     @State private var correctAnswer = Int.random(in: 0...2)
     @State private var selected = 0
     
     @State private var showingScore = false
-    @State private var showingWrong = false
     @State private var score = 0
+    @State private var scoreTitle = ""
+    @State private var scoreMessage = ""
     
+    @State private var flagAngle = [0.0, 0.0, 0.0]
+    @State private var flagOpacity = [1.0, 1.0, 1.0]
+    @State private var flagShake = [0, 0, 0]
+
+        
     var body: some View {
         ZStack {
             Color.white
@@ -57,6 +75,9 @@ struct ContentView: View {
                             .renderingMode(.original)
                             .FlagImage()
                     }
+                    .rotation3DEffect(.degrees(self.flagAngle[number]), axis: (x: 0, y: 1, z: 0))
+                    .opacity(self.flagOpacity[number])
+                    .modifier(Shake(animatableData: CGFloat(self.flagShake[number])))
                 }
                 
                 Text("\(score)")
@@ -66,38 +87,67 @@ struct ContentView: View {
         }
             
         .alert(isPresented: $showingScore) {
-            if showingWrong == true {
-                return Alert(title: Text("Incorrect"), message:
-                    Text("Your score is \(score)\nThat's the flag of \(countries[selected])"),
-                    dismissButton:
-                    .default(Text("Continue")) {
-                        self.askQuestion()
-                    })
-            } else {
-                return Alert(title: Text("Correct"), message:
-                    Text("Your score is \(score)"),
-                    dismissButton:
-                    .default(Text("Continue")) {
-                        self.askQuestion()
-                    })
-            }
+            Alert(title: Text(scoreTitle),
+                  message: Text(scoreMessage),
+                  dismissButton: .default(Text("Continue")) {
+                    self.askQuestion()
+                })
         }
     }
-    
+        
     func flagTapped(_ number: Int) {
         if number == correctAnswer {
             score += 100
-            showingWrong = false
+            scoreTitle = "Correct!"
+            scoreMessage = "Your score is \(score)"
+            
+            correctAnimation()
         } else {
-            showingWrong = true
+            scoreTitle = "Wrong!"
+            scoreMessage = "That's the flag of \(countries[number])"
+            
+            wrongAnimation()
         }
         
         showingScore = true
     }
     
     func askQuestion() {
+        flagAngle = [0.0, 0.0, 0.0]
+        withAnimation {
+            flagOpacity = [1.0, 1.0, 1.0]
+        }
+        flagShake = [0, 0, 0]
+        
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
+        
+        
+    }
+    
+    func correctAnimation() {
+        for flag in 0...2 {
+            if flag == correctAnswer {
+                withAnimation {
+                    flagAngle[flag] = 360.0
+                }
+                
+            } else {
+                withAnimation {
+                    flagOpacity[flag] = 0.25
+                }
+            }
+        }
+    }
+    
+    func wrongAnimation() {
+        for flag in 0...2 {
+            if flag != correctAnswer && flag == selected {
+                withAnimation {
+                    flagShake[flag] = 1
+                }
+            }
+        }
     }
 }
 
