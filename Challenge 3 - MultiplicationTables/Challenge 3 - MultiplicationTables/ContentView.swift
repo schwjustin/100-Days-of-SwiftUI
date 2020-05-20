@@ -37,14 +37,18 @@ struct Game: View {
             Section(header: Text("Submit".uppercased())) {
                 Button("Submit") {
                     if self.count == self.questions {
-                        //self.presentationMode.wrappedValue.dismiss()
+                        self.check()
                         self.showing = true
                     } else if self.answer != "" {
+                        self.count += 1
                         self.check()
                         self.question()
-                        self.count += 1
                     }
                 }
+            }
+            
+            Section(header: Text("Score".uppercased())) {
+                    Text("\(score)")
             }
         }
         .alert(isPresented: $showing) {
@@ -67,6 +71,7 @@ struct Game: View {
     
     func close() {
         self.presentationMode.wrappedValue.dismiss()
+        score = 0
     }
 }
 
@@ -99,12 +104,6 @@ struct ContentView: View {
                 Section(header: Text("Start Game".uppercased())) {
                     Button("Start") {
                         self.active.toggle()
-                    }
-                }
-                
-                Section(header: Text("Start Game".uppercased())) {
-                    if showing {
-                        Text("hi")
                     }
                 }
              }
