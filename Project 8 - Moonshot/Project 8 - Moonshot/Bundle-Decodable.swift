@@ -2,7 +2,7 @@
 //  Bundle-Decodable.swift
 //  Project 8 - Moonshot
 //
-//  Created by Justin Schwartz on 5/20/20.
+//  Created by Justin Schwartz on 5/24/20.
 //  Copyright © 2020 Justin Schwartz. All rights reserved.
 //
 
@@ -24,7 +24,7 @@ extension Bundle {
         decoder.dateDecodingStrategy = .formatted(formatter)
         
         guard let loaded = try? decoder.decode(T.self, from: data) else {
-            fatalError("Failed to load \(file) from bundle.")
+            fatalError("Failed to decode \(file) from bundle.")
         }
         
         return loaded

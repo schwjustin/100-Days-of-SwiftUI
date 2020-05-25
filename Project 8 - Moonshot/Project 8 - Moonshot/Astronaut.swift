@@ -2,20 +2,14 @@
 //  Astronaut.swift
 //  Project 8 - Moonshot
 //
-//  Created by Justin Schwartz on 5/20/20.
+//  Created by Justin Schwartz on 5/24/20.
 //  Copyright © 2020 Justin Schwartz. All rights reserved.
 //
 
-import SwiftUI
+import Foundation
 
-struct Astronaut: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct Astronaut_Previews: PreviewProvider {
-    static var previews: some View {
-        Astronaut()
-    }
+struct Astronaut: Codable, Identifiable {
+    let id: String
+    let name: String
+    let description: String
 }
