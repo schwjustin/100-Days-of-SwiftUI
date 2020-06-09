@@ -16,14 +16,12 @@ struct ContentView: View {
             Text("Item 2")
                 Text("Item 3")}
         
-        
         Section(header: Text("Examples")) {
             Text("Item 1")
             Text("Item 2")
                 Text("Item 3")}
     }.listStyle(GroupedListStyle())
        // .environment(\.horizontalSizeClass, .regular)
-        
     }
 }
 
