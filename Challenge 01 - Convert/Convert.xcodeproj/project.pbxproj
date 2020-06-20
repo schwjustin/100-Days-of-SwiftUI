@@ -11,6 +11,7 @@
 		0A607B33245F362C007A8A9E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A607B32245F362C007A8A9E /* SceneDelegate.swift */; };
 		0A607B35245F362C007A8A9E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A607B34245F362C007A8A9E /* ContentView.swift */; };
 		0A607B37245F362D007A8A9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A607B36245F362D007A8A9E /* Assets.xcassets */; };
+		0A607B3A245F362D007A8A9E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A607B39245F362D007A8A9E /* Preview Assets.xcassets */; };
 		0A607B3D245F362D007A8A9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A607B3B245F362D007A8A9E /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
