@@ -10,6 +10,7 @@ import SwiftUI
 
 struct EmojiRatingView: View {
     let rating: Int16
+    let skills = ["test", "test"]
     
     var body: some View {
         switch rating {
