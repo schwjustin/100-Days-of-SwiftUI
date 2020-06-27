@@ -1,15 +1,15 @@
 //
 //  Results.swift
-//  Challenge 05 - UsersAndFriends
+//  Project 05 Part 2 - UsersAndFriends
 //
-//  Created by Justin Schwartz on 6/25/20.
+//  Created by Justin Schwartz on 6/27/20.
 //  Copyright © 2020 Justin Schwartz. All rights reserved.
 //
 
 import Foundation
 
-struct Result: Codable {
-    struct userFriends: Codable {
+struct Result: Codable, Identifiable {
+    struct userFriends: Codable, Identifiable {
         var id: UUID
         var name: String
     }

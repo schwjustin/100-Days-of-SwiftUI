@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0A418F2324A569B700BBA3D3 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A418F2224A569B700BBA3D3 /* DetailView.swift */; };
 		0A418F2524A5A9D600BBA3D3 /* BlurTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A418F2424A5A9D600BBA3D3 /* BlurTesting.swift */; };
+		0A829E4524A6BDA600AAF18F /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A829E4424A6BDA600AAF18F /* HostingController.swift */; };
 		0ABA495224A52BE0007AFFF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA495124A52BE0007AFFF9 /* AppDelegate.swift */; };
 		0ABA495424A52BE0007AFFF9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA495324A52BE0007AFFF9 /* SceneDelegate.swift */; };
 		0ABA495624A52BE0007AFFF9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABA495524A52BE0007AFFF9 /* ContentView.swift */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		0A418F2224A569B700BBA3D3 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		0A418F2424A5A9D600BBA3D3 /* BlurTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurTesting.swift; sourceTree = "<group>"; };
+		0A829E4424A6BDA600AAF18F /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
 		0ABA494E24A52BE0007AFFF9 /* Challenge 05 - UsersAndFriends.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Challenge 05 - UsersAndFriends.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ABA495124A52BE0007AFFF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0ABA495324A52BE0007AFFF9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,9 +66,10 @@
 			children = (
 				0ABA495124A52BE0007AFFF9 /* AppDelegate.swift */,
 				0ABA495324A52BE0007AFFF9 /* SceneDelegate.swift */,
-				0ABA496524A531AA007AFFF9 /* Results.swift */,
+				0A829E4424A6BDA600AAF18F /* HostingController.swift */,
 				0ABA495524A52BE0007AFFF9 /* ContentView.swift */,
 				0A418F2224A569B700BBA3D3 /* DetailView.swift */,
+				0ABA496524A531AA007AFFF9 /* Results.swift */,
 				0A418F2424A5A9D600BBA3D3 /* BlurTesting.swift */,
 				0ABA495724A52BE4007AFFF9 /* Assets.xcassets */,
 				0ABA495C24A52BE4007AFFF9 /* LaunchScreen.storyboard */,
@@ -159,6 +162,7 @@
 				0A418F2524A5A9D600BBA3D3 /* BlurTesting.swift in Sources */,
 				0ABA495424A52BE0007AFFF9 /* SceneDelegate.swift in Sources */,
 				0ABA496624A531AA007AFFF9 /* Results.swift in Sources */,
+				0A829E4524A6BDA600AAF18F /* HostingController.swift in Sources */,
 				0A418F2324A569B700BBA3D3 /* DetailView.swift in Sources */,
 				0ABA495624A52BE0007AFFF9 /* ContentView.swift in Sources */,
 			);

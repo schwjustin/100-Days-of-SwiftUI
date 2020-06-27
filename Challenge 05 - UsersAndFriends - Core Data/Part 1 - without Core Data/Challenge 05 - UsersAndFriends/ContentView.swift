@@ -30,53 +30,52 @@ struct ContentView: View {
     @State private var results = [Result]()
     
     var body: some View {
+       
         NavigationView {
-            ScrollView {
-                VStack(spacing: 0) {
-                    ForEach(results, id: \.id) { item in
-                        NavigationLink(destination: DetailView(result: item)) {
-                            HStack {
-                                VStack(alignment: .leading) {
-                                    Text(item.name)
+            ZStack {
+                Color.init(hue: 250/360, saturation: 80/100, brightness: 5/100).edgesIgnoringSafeArea(.all)
+                ScrollView {
+                    VStack(spacing: 0) {
+                        ForEach(results, id: \.id) { item in
+                            NavigationLink(destination: DetailView(result: item, results: self.results)) {
+                                HStack {
+                                    VStack(alignment: .leading) {
+                                        Text(item.name)
+                                            .font(.headline)
+                                            .foregroundColor(Color.white)
+                                        
+                                        Text(item.company)
+                                            .foregroundColor(Color.gray)
+                                    }
+                                    Spacer()
+                                    VStack {
+                                    Image(systemName: "arrow.right.circle.fill")
                                         .font(.headline)
-                                        .foregroundColor(Color.white)
-                                    
-                                    Text(item.company)
-                                        .foregroundColor(Color.gray)
-                                    
+                                        .foregroundColor(item.isActive ? .green : .red)
+                                    }
                                 }
-                                Spacer()
-                                VStack {
-                                Image(systemName: "arrow.right.circle.fill")
-                                    .font(.headline)
-                                    .foregroundColor(item.isActive ? .green : .red)
-                                    
-                                }
+                                .contentShape(Rectangle())
+                                .padding(16)
                             }
-                            .contentShape(Rectangle())
-                            .padding(16)
-                            
+                            .frame(maxWidth: .infinity)
+                            .background(Color.init(hue: 250/360, saturation: 40/100, brightness: 15/100))
+                            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                            .buttonStyle(PlainButtonStyle())
+                            .padding(.top, 0)
+                            .padding(.bottom, 16)
+                            .padding([.horizontal], 16)
                         }
-                        .frame(maxWidth: .infinity)
-                        .background(Color.init(hue: 250/360, saturation: 40/100, brightness: 15/100))
-                        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                        .buttonStyle(PlainButtonStyle())
-                        .padding(.top, 0)
-                        .padding(.bottom, 16)
-                        .padding([.horizontal], 16)
-                        
                     }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color.init(hue: 250/360, saturation: 80/100, brightness: 5/100))
+                    .edgesIgnoringSafeArea(.all)
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color.init(hue: 250/360, saturation: 80/100, brightness: 5/100))
-                .edgesIgnoringSafeArea(.all)
-                
             }
-
-            
-        .navigationBarTitle("UsersAndFriends", displayMode: .inline)
+            .navigationBarTitle("UsersAndFriends", displayMode: .inline)
         }
         .onAppear(perform: loadData)
+        .background(Color.init(hue: 250/360, saturation: 80/100, brightness: 5/100))
+        .accentColor(Color.init(hue: 250/360, saturation: 80/100, brightness: 100/100))
     }
     
     func loadData() {
